@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: thumbnail-service
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        VERSION: 1.0.0
+    ports:
+      - 3010:3010
+  
