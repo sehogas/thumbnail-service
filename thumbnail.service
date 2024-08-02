@@ -1,0 +1,11 @@
+[Unit]
+Description=thumbnail_service
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=5s
+ExecStart=/home/shogas/go/bin/thumbnail_service
+
+[Install]
+WantedBy=multi-user.target

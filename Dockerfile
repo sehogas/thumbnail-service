@@ -14,12 +14,12 @@ ENV CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 
 ARG VERSION=1.0.0
 ENV FLAGS="-s -w -X 'main.Version=${VERSION}'"
-RUN go build -ldflags="${FLAGS}" -o ./thumbnail-service ./cmd/api/main.go
+RUN go build -ldflags="${FLAGS}" -o ./thumbnail_service ./cmd/api/main.go
 
 FROM scratch
 
-COPY --from=builder ["/build/thumbnail-service", "/"]
+COPY --from=builder ["/build/thumbnail_service", "/"]
 
 EXPOSE 3010
 
-ENTRYPOINT ["/thumbnail-service"]
+ENTRYPOINT ["/thumbnail_service"]

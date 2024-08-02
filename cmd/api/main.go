@@ -68,6 +68,11 @@ func thumbnailHandler(w http.ResponseWriter, r *http.Request) {
 		intHeight = 0
 	}
 
+	filename := r.URL.Query().Get("filename")
+	if filename == "" {
+		filename = "filename_thumbnail.jpg"
+	}
+
 	urlImage := r.URL.Query().Get("url")
 	if urlImage == "" {
 		http.Error(w, "", http.StatusBadRequest)
@@ -125,7 +130,7 @@ func thumbnailHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "image/jpg")
 	w.Header().Set("Content-Length", strconv.Itoa(len(buffer.Bytes())))
-
+	w.Header().Set("Content-Disposition", fmt.Sprintf("inline; filename=%s", filename))
 	if _, err := w.Write(buffer.Bytes()); err != nil {
 		http.Error(w, "", http.StatusInternalServerError)
 		return

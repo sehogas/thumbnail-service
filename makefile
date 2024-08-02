@@ -1,5 +1,5 @@
 ########################################################
-override TARGET=thumbnail-service
+override TARGET=thumbnail_service
 VERSION=1.0.0
 OS=linux
 ARCH=amd64
