@@ -1,6 +1,6 @@
 ########################################################
 override TARGET=thumbnail_service
-VERSION=1.0.0
+VERSION=1.0.6
 OS=linux
 ARCH=amd64
 FLAGS_VERSION="-X 'main.Version=$(VERSION)'"
