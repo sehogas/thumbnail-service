@@ -19,7 +19,7 @@ or
 If width or height is equal to zero, an attempt will be made to resize proportionally.
 
 
-http://localhost:3010/?width=80&height=0&url=http%3A%2F%2F192.168.1.1%2FfotosPers%2FDNI_34556436_f5de20c5-8108-43a9-9342-d2d300b910e3.jpg
+http://localhost:3010/?width=80&height=0&url=https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Pruebas1.jpg/800px-Pruebas1.jpg
 
 ## Install as a linux service
 
@@ -37,7 +37,6 @@ http://localhost:3010/?width=80&height=0&url=http%3A%2F%2F192.168.1.1%2FfotosPer
 
 ```journalctl -u thumbnail.service --since today```
 
-
 ## Devs
 
 ### Example of updating golang version
@@ -51,10 +50,6 @@ http://localhost:3010/?width=80&height=0&url=http%3A%2F%2F192.168.1.1%2FfotosPer
 ### Update all dependencies 
 
 ´´´go get -t -u ./...´´´
-
-
-
-
 
 ## Autor
 * [Sebastian Hogas](https://github.com/sehogas)

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"image/jpeg"
 	"io"
@@ -16,6 +17,10 @@ import (
 
 	cache "github.com/victorspringer/http-cache"
 	"github.com/victorspringer/http-cache/adapter/memory"
+)
+
+var (
+	Version string = "development"
 )
 
 func main() {
@@ -44,8 +49,24 @@ func main() {
 	handler := http.HandlerFunc(thumbnailHandler)
 
 	mux := http.NewServeMux()
-	mux.Handle("/", cacheClient.Middleware(handler))
 
+	mux.Handle("/", cacheClient.Middleware(handler))
+	mux.HandleFunc("/info", func(w http.ResponseWriter, r *http.Request) {
+		response := struct {
+			Version string `json:"version"`
+		}{
+			Version: Version,
+		}
+		json, err := json.Marshal(response)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write(json)
+	})
+	log.Printf("Starting server on port %v", PORT)
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", PORT), mux))
 }
 
